@@ -1,0 +1,76 @@
+免安装版分一下几步骤
+1、下载MySQL  http://dev.mysql.com/downloads/mysql/
+
+根据对应版本（window 32位，64位）来下载，点击下载后，会跳转到页面，登陆框下面有免登陆下载入口《No thanks, just start my download.》
+
+
+2、下载完后，解压。存放某个盘符中（个人习惯都放在d盘根目录下，）
+3、配置环境变量
+可用mysql_home指向MySQL存放地址（d:/mysql）,然后配置path  后面追加  ;%mysql_home%\bin  注意前面如没有英文分好; 则加上。
+4、配置mysql配置文件
+进入 MySQL 的安装目录, 在安装目录下面有一个 my-default.ini 的文件, MySQL启动时会读取这个文件, 我们配置一下这个文件（ my-default.ini可重命名为my.ini）
+设置basedir以及datadir地址
+# These are commonly set, remove the # and set as required.
+basedir =D:\deveSoftware\mysql
+datadir =D:\deveSoftware\mysql\data
+port = 3306
+# server_id = .....
+cmd命令窗口进入mysql安装目录下bin文件夹，安装服务mysql
+       mysql Windows服务的命令：mysqld --install MySQL  
+
+补充下myql服务相关命令
+　　    移除mysql服务：mysqld –remove MySQL 
+　　    启动mysql服务的命令：net start MySQL 
+　　    停止mysql服务的命令：net stop MySQL 
+
+5、初始化MySQL数据
+继续在命令提示符中输入: mysqld --initialize --console
+
+
+    这是初始化数据库, 然后你可以在初始化的最后面看到有一个 root@localhost: 后面有一连串的字母数字符号, 这是 MySQL 为你自动生成的随机密码. 要记下来, 一会我们登陆 MySQL 数据库的时候要用. 
+![alt](data:image/png;base64,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)
+
+
+六: 启动MySQL服务
+
+
+    启动 MySQL 服务, 启动了你才能用 MySQL 数据库.
+
+
+    有两种方式可以启动 MySQL:
+
+>t.GLn#hi1sa
+    方法一: 用命令启动
+
+
+            net start mysql
+
+
+    方法二: 从 windows 服务中启动（cmd启动Windows服务 services.msc）
+7、修改MySQL默认密码
+启动了之后, 我们登陆 MySQL 数据库, 输入命令
+
+
+    mysql -uroot -p
+
+
+    回车, 要求你输入密码, 这时, 把刚才 MySQL 随机生成的密码输入, 然后回车, 就登陆进去了.
+
+
+    登陆进去之后, 直接输入:
+
+
+    SET PASSWORD = PASSWORD('1234567');
+
+
+    在 mysql-5.7.10 中, 系统的 user 表中没有 password 这一列了, 在 mysql-5.6.* 中还有.
+
+
+    以前我们用 mysql-5.6.* 的时候, 直接用 update 语句来更新root密码.
+
+
+    这种方法在 mysql-5.7.10 中没法用了, 我们只能用 SET PASSWORD = PASSWORD('你的新密码'); 来修改密码.
+
+
+    修改完密码之后, 需要重启 MySQL 服务才生效.
+
